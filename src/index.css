@@ -2,41 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* NairaSend Design System - Inspired by financial dashboards with blue-green gradients */
 
 @layer base {
   :root {
+    /* Core Colors - Blue gradients with green accents */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 217 33% 17%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 217 33% 17%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 217 33% 17%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Deep blue inspired by dashboard */
+    --primary: 217 91% 15%;
+    --primary-foreground: 0 0% 100%;
+    --primary-gradient: 225 100% 30%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Green for financial elements */
+    --secondary: 142 69% 58%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-dark: 142 69% 45%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Orange for pending/warning states */
+    --warning: 25 95% 53%;
+    --warning-foreground: 0 0% 100%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Blue accent for totals */
+    --info: 212 100% 45%;
+    --info-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --accent: 142 69% 96%;
+    --accent-foreground: 142 69% 15%;
 
-    --radius: 0.5rem;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 217 91% 15%;
+
+    --radius: 1rem;
+
+    /* Custom gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(217, 91%, 15%) 0%, hsl(225, 100%, 30%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(217, 91%, 15%) 0%, hsl(217, 91%, 20%) 100%);
+    --gradient-success: linear-gradient(135deg, hsl(142, 69%, 58%) 0%, hsl(142, 69%, 45%) 100%);
+    --gradient-warning: linear-gradient(135deg, hsl(25, 95%, 53%) 0%, hsl(25, 95%, 45%) 100%);
+    --gradient-info: linear-gradient(135deg, hsl(212, 100%, 45%) 0%, hsl(212, 100%, 35%) 100%);
+
+    /* Shadows */
+    --shadow-card: 0 4px 6px -1px hsl(217 91% 15% / 0.1);
+    --shadow-hover: 0 10px 15px -3px hsl(217 91% 15% / 0.1);
+
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
