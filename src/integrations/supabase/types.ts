@@ -14,6 +14,74 @@ export type Database = {
   }
   public: {
     Tables: {
+      cart_items: {
+        Row: {
+          created_at: string
+          id: string
+          product_id: string
+          quantity: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          product_id: string
+          quantity?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          product_id?: string
+          quantity?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cart_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      chat_sessions: {
+        Row: {
+          created_at: string
+          customer_name: string | null
+          id: string
+          is_active: boolean | null
+          session_started_at: string | null
+          title: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          customer_name?: string | null
+          id?: string
+          is_active?: boolean | null
+          session_started_at?: string | null
+          title?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          customer_name?: string | null
+          id?: string
+          is_active?: boolean | null
+          session_started_at?: string | null
+          title?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       conversion_rates: {
         Row: {
           country_code: string
@@ -186,27 +254,78 @@ export type Database = {
       jobs_log: {
         Row: {
           created_at: string | null
+          error_count: number | null
+          execution_time_ms: number | null
           id: string
           job: string
           payload: Json | null
           processed_count: number | null
+          server_time_utc: string | null
+          skipped_count: number | null
+          started_at: string | null
           status: string
         }
         Insert: {
           created_at?: string | null
+          error_count?: number | null
+          execution_time_ms?: number | null
           id?: string
           job: string
           payload?: Json | null
           processed_count?: number | null
+          server_time_utc?: string | null
+          skipped_count?: number | null
+          started_at?: string | null
           status: string
         }
         Update: {
           created_at?: string | null
+          error_count?: number | null
+          execution_time_ms?: number | null
           id?: string
           job?: string
           payload?: Json | null
           processed_count?: number | null
+          server_time_utc?: string | null
+          skipped_count?: number | null
+          started_at?: string | null
           status?: string
+        }
+        Relationships: []
+      }
+      orders: {
+        Row: {
+          created_at: string
+          customer_email: string
+          customer_name: string
+          customer_phone: string | null
+          id: string
+          status: string
+          total_amount: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          customer_email: string
+          customer_name: string
+          customer_phone?: string | null
+          id?: string
+          status?: string
+          total_amount: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          customer_email?: string
+          customer_name?: string
+          customer_phone?: string | null
+          id?: string
+          status?: string
+          total_amount?: number
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -243,6 +362,80 @@ export type Database = {
           payout_per_drop_usd?: number
           sort_order?: number | null
           total_return_usd?: number
+        }
+        Relationships: []
+      }
+      product_reviews: {
+        Row: {
+          comment: string
+          created_at: string
+          id: string
+          product_id: string
+          rating: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          comment: string
+          created_at?: string
+          id?: string
+          product_id: string
+          rating: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          comment?: string
+          created_at?: string
+          id?: string
+          product_id?: string
+          rating?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_reviews_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      products: {
+        Row: {
+          category: string | null
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string | null
+          name: string
+          price_cents: number
+          stock_quantity: number
+          updated_at: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          name: string
+          price_cents: number
+          stock_quantity?: number
+          updated_at?: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          name?: string
+          price_cents?: number
+          stock_quantity?: number
+          updated_at?: string
         }
         Relationships: []
       }
@@ -334,9 +527,75 @@ export type Database = {
           },
         ]
       }
+      usdt_rates: {
+        Row: {
+          currency: string
+          id: string
+          rate: number
+          updated_at: string | null
+        }
+        Insert: {
+          currency: string
+          id?: string
+          rate: number
+          updated_at?: string | null
+        }
+        Update: {
+          currency?: string
+          id?: string
+          rate?: number
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      users: {
+        Row: {
+          country: string
+          created_at: string | null
+          email: string
+          email_verified: boolean | null
+          id: string
+          is_admin: boolean | null
+          name: string | null
+          phone: string | null
+          referrer_id: string | null
+        }
+        Insert: {
+          country: string
+          created_at?: string | null
+          email: string
+          email_verified?: boolean | null
+          id?: string
+          is_admin?: boolean | null
+          name?: string | null
+          phone?: string | null
+          referrer_id?: string | null
+        }
+        Update: {
+          country?: string
+          created_at?: string | null
+          email?: string
+          email_verified?: boolean | null
+          id?: string
+          is_admin?: boolean | null
+          name?: string | null
+          phone?: string | null
+          referrer_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "users_referrer_id_fkey"
+            columns: ["referrer_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       wallet_transactions: {
         Row: {
           amount_cents: number
+          balance_after_cents: number | null
           created_at: string | null
           id: string
           meta: Json | null
@@ -345,6 +604,7 @@ export type Database = {
         }
         Insert: {
           amount_cents: number
+          balance_after_cents?: number | null
           created_at?: string | null
           id?: string
           meta?: Json | null
@@ -353,6 +613,7 @@ export type Database = {
         }
         Update: {
           amount_cents?: number
+          balance_after_cents?: number | null
           created_at?: string | null
           id?: string
           meta?: Json | null
@@ -435,6 +696,16 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      process_income_event_atomic: {
+        Args: {
+          amount_cents: number
+          deposit_id: string
+          drop_number: number
+          event_id: string
+          user_id: string
+        }
+        Returns: Json
+      }
       reserve_withdrawal: {
         Args: { p_amount: number; p_fee: number; p_user_id: string }
         Returns: undefined

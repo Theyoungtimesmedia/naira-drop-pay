@@ -13,6 +13,8 @@ import Dashboard from "./pages/Dashboard";
 import Plans from "./pages/Plans";
 import Wallet from "./pages/Wallet";
 import Deposit from "./pages/Deposit";
+import Profile from "./pages/Profile";
+import Transactions from "./pages/Transactions";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -67,6 +69,8 @@ const AppRoutes = () => (
     <Route path="/plans" element={<ProtectedRoute><Plans /></ProtectedRoute>} />
     <Route path="/wallet" element={<ProtectedRoute><Wallet /></ProtectedRoute>} />
     <Route path="/deposit" element={<ProtectedRoute><Deposit /></ProtectedRoute>} />
+    <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+    <Route path="/transactions" element={<ProtectedRoute><Transactions /></ProtectedRoute>} />
     
     {/* Catch-all route */}
     <Route path="*" element={<NotFound />} />

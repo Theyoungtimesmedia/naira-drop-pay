@@ -32,7 +32,7 @@ const Landing = () => {
           <div className="text-center space-y-8">
             <div className="space-y-4">
               <h1 className="text-4xl md:text-6xl font-bold">
-                Welcome to <span className="text-secondary">NairaSend</span>
+                Welcome to <span className="text-secondary">Luno Rise</span>
               </h1>
               <p className="text-xl md:text-2xl text-primary-foreground/80 max-w-2xl mx-auto">
                 Smart investment platform with guaranteed daily returns. Start earning today with as little as $5.

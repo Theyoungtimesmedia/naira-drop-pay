@@ -45,7 +45,7 @@ const Register = () => {
         return;
       }
 
-      toast.success('Registration successful! Check your email to verify your account.');
+      toast.success('Registration successful! Welcome to Luno Rise!');
       navigate('/profile');
     } catch (error) {
       toast.error('An unexpected error occurred');
@@ -61,7 +61,7 @@ const Register = () => {
           <CardHeader className="text-center">
             <CardTitle className="text-2xl font-bold">Create Account</CardTitle>
             <CardDescription>
-              Join NairaSend and start earning today
+              Join Luno Rise and start earning today
             </CardDescription>
           </CardHeader>
           <CardContent>

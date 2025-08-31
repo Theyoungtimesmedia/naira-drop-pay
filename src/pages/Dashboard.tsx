@@ -116,9 +116,14 @@ const Dashboard = () => {
               <h1 className="text-2xl font-bold">Welcome Back!</h1>
               <p className="text-primary-foreground/80">{profile?.full_name || 'User'}</p>
             </div>
-            <Button size="icon" variant="ghost" className="text-primary-foreground">
-              <Bell className="h-6 w-6" />
-            </Button>
+            <div className="text-right">
+              <div className="bg-info/10 border border-info/20 rounded-lg px-3 py-1 mb-2">
+                <span className="text-sm font-medium text-primary-foreground">Luno Rise</span>
+              </div>
+              <Button size="icon" variant="ghost" className="text-primary-foreground">
+                <Bell className="h-6 w-6" />
+              </Button>
+            </div>
           </div>
 
           {/* Next Income Drop Countdown */}
@@ -180,14 +185,14 @@ const Dashboard = () => {
                   <Plus className="mr-2 h-4 w-4" />
                   Deposit
                 </Button>
-                <Button
-                  variant="warning"
-                  className="w-full"
-                  onClick={() => navigate('/withdraw')}
-                >
-                  <TrendingUp className="mr-2 h-4 w-4" />
-                  Withdraw
-                </Button>
+              <Button
+                variant="warning"
+                className="w-full"
+                onClick={() => navigate('/wallet')}
+              >
+                <TrendingUp className="mr-2 h-4 w-4" />
+                Withdraw
+              </Button>
               </div>
             </CardContent>
           </Card>
