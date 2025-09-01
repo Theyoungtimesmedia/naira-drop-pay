@@ -14,9 +14,9 @@ const Register = () => {
   const { signUp } = useAuth();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    email: '',
+    phone: '',
     password: '',
-    full_name: '',
+    confirmPassword: '',
     country: '',
     referralCode: ''
   });
@@ -31,11 +31,20 @@ const Register = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (formData.password !== formData.confirmPassword) {
+      toast.error('Passwords do not match');
+      return;
+    }
+
     setLoading(true);
 
     try {
-      const { error } = await signUp(formData.email, formData.password, {
-        full_name: formData.full_name,
+      // Use phone as email for Supabase (since Supabase requires email)
+      const email = `${formData.phone}@lunorise.app`;
+      
+      const { error } = await signUp(email, formData.password, {
+        phone: formData.phone,
         country: formData.country,
         referral_code: formData.referralCode
       });
@@ -67,23 +76,13 @@ const Register = () => {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <Label htmlFor="full_name">Full Name</Label>
+                <Label htmlFor="phone">Phone Number</Label>
                 <Input
-                  id="full_name"
-                  type="text"
-                  value={formData.full_name}
-                  onChange={(e) => setFormData(prev => ({ ...prev, full_name: e.target.value }))}
-                  required
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                  id="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
+                  placeholder="+234 800 000 0000"
                   required
                 />
               </div>
@@ -101,7 +100,19 @@ const Register = () => {
               </div>
 
               <div>
-                <Label htmlFor="country">Country</Label>
+                <Label htmlFor="confirmPassword">Confirm Password</Label>
+                <Input
+                  id="confirmPassword"
+                  type="password"
+                  value={formData.confirmPassword}
+                  onChange={(e) => setFormData(prev => ({ ...prev, confirmPassword: e.target.value }))}
+                  required
+                  minLength={6}
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="country">Country Code</Label>
                 <Select
                   value={formData.country}
                   onValueChange={(value) => setFormData(prev => ({ ...prev, country: value }))}

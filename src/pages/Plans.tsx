@@ -117,67 +117,67 @@ const Plans = () => {
             </div>
           </div>
 
-          <div className="grid gap-6">
+          <div className="grid gap-4">
             {plans.map((plan) => {
               const returnPercentage = getReturnPercentage(plan.deposit_usd, plan.total_return_usd);
               
               return (
-                <Card key={plan.id} className="relative overflow-hidden shadow-card hover:shadow-hover transition-all duration-200">
+                <Card key={plan.id} className="relative overflow-hidden bg-card border shadow-sm hover:shadow-md transition-all duration-200">
                   {plan.is_locked && (
-                    <div className="absolute top-4 right-4">
-                      <Badge variant="secondary" className="flex items-center gap-1">
-                        <Lock className="h-3 w-3" />
-                        Locked
+                    <div className="absolute top-3 right-3">
+                      <Badge variant="secondary" className="text-xs px-2 py-1">
+                        Coming Soon
                       </Badge>
                     </div>
                   )}
                   
-                  <CardHeader className="pb-3">
-                    <div className="flex justify-between items-start">
+                  <CardHeader className="pb-4">
+                    <div className="flex items-start justify-between">
                       <div>
-                        <CardTitle className="text-xl font-bold">{plan.name}</CardTitle>
-                        <Badge variant="outline" className="mt-2">
+                        <CardTitle className="text-lg font-bold text-foreground">{plan.name}</CardTitle>
+                        <Badge variant="outline" className="mt-1 text-xs bg-primary/10 text-primary border-primary/20">
                           +{returnPercentage}% Return
                         </Badge>
                       </div>
                     </div>
                   </CardHeader>
                   
-                  <CardContent className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-1">
-                        <p className="text-sm text-muted-foreground">Deposit Amount</p>
-                        <p className="text-2xl font-bold text-primary">
+                  <CardContent className="pt-0 space-y-4">
+                    <div className="grid grid-cols-2 gap-6">
+                      <div className="text-center">
+                        <p className="text-xs text-muted-foreground mb-1">Deposit Amount</p>
+                        <p className="text-xl font-bold text-foreground">
                           {formatUSD(plan.deposit_usd)}
                         </p>
                       </div>
-                      <div className="space-y-1">
-                        <p className="text-sm text-muted-foreground">Total Return</p>
-                        <p className="text-2xl font-bold text-secondary">
+                      <div className="text-center">
+                        <p className="text-xs text-muted-foreground mb-1">Total Return</p>
+                        <p className="text-xl font-bold text-secondary">
                           {formatUSD(plan.total_return_usd)}
                         </p>
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4 pt-2 border-t">
-                      <div className="space-y-1">
-                        <p className="text-sm text-muted-foreground">Per Drop</p>
-                        <p className="text-lg font-semibold">
+                    <div className="grid grid-cols-2 gap-6 pt-2 border-t border-border/50">
+                      <div className="text-center">
+                        <p className="text-xs text-muted-foreground mb-1">Per Drop</p>
+                        <p className="text-sm font-semibold text-foreground">
                           {formatDecimal(plan.payout_per_drop_usd)}
                         </p>
                       </div>
-                      <div className="space-y-1">
-                        <p className="text-sm text-muted-foreground">Total Drops</p>
-                        <p className="text-lg font-semibold">
+                      <div className="text-center">
+                        <p className="text-xs text-muted-foreground mb-1">Total Drops</p>
+                        <p className="text-sm font-semibold text-foreground">
                           {plan.drops_count} times
                         </p>
                       </div>
                     </div>
 
-                    <div className="pt-4">
+                    <div className="pt-3">
                       <Button
-                        className="w-full"
-                        variant={plan.is_locked ? "outline" : "primary_gradient"}
+                        className="w-full h-11"
+                        variant={plan.is_locked ? "outline" : "default"}
+                        size="default"
                         disabled={plan.is_locked}
                         onClick={() => navigate(`/deposit?plan=${plan.id}`)}
                       >

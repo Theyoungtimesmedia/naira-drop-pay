@@ -112,6 +112,7 @@ export type Database = {
       deposits: {
         Row: {
           amount_usd_cents: number
+          client_ref: string | null
           confirmed_at: string | null
           created_at: string | null
           currency: string | null
@@ -127,6 +128,7 @@ export type Database = {
         }
         Insert: {
           amount_usd_cents: number
+          client_ref?: string | null
           confirmed_at?: string | null
           created_at?: string | null
           currency?: string | null
@@ -142,6 +144,7 @@ export type Database = {
         }
         Update: {
           amount_usd_cents?: number
+          client_ref?: string | null
           confirmed_at?: string | null
           created_at?: string | null
           currency?: string | null
@@ -164,6 +167,33 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      exchange_rates: {
+        Row: {
+          country_code: string
+          currency: string
+          currency_symbol: string
+          id: string
+          rate_to_usd: number
+          updated_at: string
+        }
+        Insert: {
+          country_code: string
+          currency: string
+          currency_symbol: string
+          id?: string
+          rate_to_usd: number
+          updated_at?: string
+        }
+        Update: {
+          country_code?: string
+          currency?: string
+          currency_symbol?: string
+          id?: string
+          rate_to_usd?: number
+          updated_at?: string
+        }
+        Relationships: []
       }
       gateway_logs: {
         Row: {
@@ -326,6 +356,39 @@ export type Database = {
           total_amount?: number
           updated_at?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      payment_gateways: {
+        Row: {
+          config: Json
+          country_code: string
+          created_at: string
+          currency: string
+          id: string
+          is_active: boolean
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          config?: Json
+          country_code: string
+          created_at?: string
+          currency: string
+          id?: string
+          is_active?: boolean
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          config?: Json
+          country_code?: string
+          created_at?: string
+          currency?: string
+          id?: string
+          is_active?: boolean
+          name?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -649,6 +712,30 @@ export type Database = {
           total_earned_cents?: number | null
           updated_at?: string | null
           user_id?: string
+        }
+        Relationships: []
+      }
+      webhook_events: {
+        Row: {
+          event_id: string
+          gateway_name: string
+          id: string
+          payload: Json
+          processed_at: string
+        }
+        Insert: {
+          event_id: string
+          gateway_name: string
+          id?: string
+          payload: Json
+          processed_at?: string
+        }
+        Update: {
+          event_id?: string
+          gateway_name?: string
+          id?: string
+          payload?: Json
+          processed_at?: string
         }
         Relationships: []
       }

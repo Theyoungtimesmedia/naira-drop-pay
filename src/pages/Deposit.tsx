@@ -5,12 +5,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
 import Layout from '@/components/Layout';
+import { CountrySelector } from '@/components/CountrySelector';
 import usdtQrCode from '@/assets/usdt-qr-code.png';
 
 interface Plan {
@@ -22,7 +22,7 @@ interface Plan {
   total_return_usd: number;
 }
 
-interface ConversionRate {
+interface ExchangeRate {
   country_code: string;
   currency: string;
   currency_symbol: string;
@@ -36,7 +36,7 @@ const Deposit = () => {
   const selectedPlanId = searchParams.get('plan');
 
   const [plan, setPlan] = useState<Plan | null>(null);
-  const [conversionRates, setConversionRates] = useState<ConversionRate[]>([]);
+  const [exchangeRates, setExchangeRates] = useState<ExchangeRate[]>([]);
   const [selectedCountry, setSelectedCountry] = useState('');
   const [localAmount, setLocalAmount] = useState('');
   const [loading, setLoading] = useState(true);
@@ -66,14 +66,14 @@ const Deposit = () => {
         setPlan(planData);
       }
 
-      // Load conversion rates
+      // Load exchange rates
       const { data: ratesData, error: ratesError } = await supabase
-        .from('conversion_rates')
+        .from('exchange_rates')
         .select('*')
         .order('country_code');
 
       if (ratesError) throw ratesError;
-      setConversionRates(ratesData || []);
+      setExchangeRates(ratesData || []);
 
     } catch (error) {
       console.error('Error loading deposit data:', error);
@@ -84,7 +84,7 @@ const Deposit = () => {
   };
 
   const getSelectedRate = () => {
-    return conversionRates.find(rate => rate.country_code === selectedCountry);
+    return exchangeRates.find(rate => rate.country_code === selectedCountry);
   };
 
   const getUSDAmount = () => {
@@ -262,21 +262,14 @@ const Deposit = () => {
                 <CardContent className="space-y-4">
                   <div>
                     <Label htmlFor="country">Select Country</Label>
-                    <Select value={selectedCountry} onValueChange={setSelectedCountry}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Choose your country" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {conversionRates.map(rate => (
-                          <SelectItem key={rate.country_code} value={rate.country_code}>
-                            {rate.country_code} - {rate.currency}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    <CountrySelector 
+                      value={selectedCountry}
+                      onValueChange={setSelectedCountry}
+                      disabled={submitting}
+                    />
                   </div>
 
-                  {selectedCountry && (
+                  {selectedCountry && selectedCountry !== 'OTHER' && (
                     <div className="p-4 bg-muted/50 rounded-lg">
                       <div className="flex justify-between items-center mb-2">
                         <span>Amount ({getSelectedRate()?.currency}):</span>
@@ -294,13 +287,23 @@ const Deposit = () => {
                     </div>
                   )}
 
+                  {selectedCountry === 'OTHER' && (
+                    <div className="p-4 bg-warning/10 border border-warning/20 rounded-lg">
+                      <p className="text-sm font-medium text-warning mb-2">Local Currency Payment Unavailable</p>
+                      <p className="text-sm text-muted-foreground">
+                        Local currency payment gateway is not available for your country yet. 
+                        Please use USDT (BEP20) payment method.
+                      </p>
+                    </div>
+                  )}
+
                   <Button
                     className="w-full"
                     variant="primary_gradient"
                     onClick={handleBasePayment}
-                    disabled={!selectedCountry || submitting}
+                    disabled={!selectedCountry || selectedCountry === 'OTHER' || submitting}
                   >
-                    {submitting ? 'Processing...' : 'Pay Now'}
+                    {submitting ? 'Processing...' : selectedCountry === 'OTHER' ? 'Use USDT Instead' : 'Pay Now'}
                   </Button>
                 </CardContent>
               </Card>
