@@ -260,6 +260,17 @@ const Deposit = () => {
                   <CardTitle>Pay with Card or Bank</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
+                  <div className="bg-info/10 border border-info/20 rounded-lg p-4 mb-4">
+                    <h4 className="font-semibold text-primary-foreground mb-2">Deposit Instructions</h4>
+                    <ul className="text-sm text-primary-foreground/80 space-y-1">
+                      <li>• Choose your preferred payment method</li>
+                      <li>• For card/bank payments, select your country for local currency rates</li>
+                      <li>• For USDT deposits, send exactly the required amount to avoid delays</li>
+                      <li>• Upload a clear screenshot for faster verification</li>
+                      <li>• Deposits are typically processed within 1-24 hours</li>
+                    </ul>
+                  </div>
+
                   <div>
                     <Label htmlFor="country">Select Country</Label>
                     <CountrySelector 
@@ -318,6 +329,18 @@ const Deposit = () => {
                   </p>
                 </CardHeader>
                 <CardContent className="space-y-6">
+                  <div className="bg-warning/10 border border-warning/20 rounded-lg p-4">
+                    <h4 className="font-semibold text-warning mb-2">USDT Deposit Instructions</h4>
+                    <ul className="text-sm text-muted-foreground space-y-1">
+                      <li>• Send EXACTLY ${getUSDAmount().toFixed(2)} USDT to the address below</li>
+                      <li>• Use ONLY BNB Chain (BEP20) network - other networks will result in loss</li>
+                      <li>• Double-check the address before sending</li>
+                      <li>• Save your transaction hash for verification</li>
+                      <li>• Upload a clear screenshot of the completed transaction</li>
+                      <li>• Manual verification takes 1-24 hours</li>
+                    </ul>
+                  </div>
+
                   {/* QR Code */}
                   <div className="text-center">
                     <img 

@@ -15,7 +15,8 @@ interface WalletData {
 }
 
 interface ProfileData {
-  full_name: string;
+  phone: string;
+  country: string;
   referral_code: string;
 }
 
@@ -48,7 +49,7 @@ const Dashboard = () => {
       // Load profile data
       const { data: profileData, error: profileError } = await supabase
         .from('profiles')
-        .select('full_name, referral_code')
+        .select('phone, country, referral_code')
         .eq('user_id', user?.id)
         .single();
 
@@ -114,7 +115,8 @@ const Dashboard = () => {
           <div className="flex justify-between items-center mb-6">
             <div>
               <h1 className="text-2xl font-bold">Welcome Back!</h1>
-              <p className="text-primary-foreground/80">{profile?.full_name || 'User'}</p>
+              <p className="text-primary-foreground/80">{profile?.phone || 'Loading...'}</p>
+              <p className="text-sm text-primary-foreground/60">{profile?.country}</p>
             </div>
             <div className="text-right">
               <div className="bg-info/10 border border-info/20 rounded-lg px-3 py-1 mb-2">
@@ -185,14 +187,14 @@ const Dashboard = () => {
                   <Plus className="mr-2 h-4 w-4" />
                   Deposit
                 </Button>
-              <Button
-                variant="warning"
-                className="w-full"
-                onClick={() => navigate('/wallet')}
-              >
-                <TrendingUp className="mr-2 h-4 w-4" />
-                Withdraw
-              </Button>
+                <Button
+                  variant="warning"
+                  className="w-full"
+                  onClick={() => navigate('/wallet')}
+                >
+                  <TrendingUp className="mr-2 h-4 w-4" />
+                  Withdraw
+                </Button>
               </div>
             </CardContent>
           </Card>
