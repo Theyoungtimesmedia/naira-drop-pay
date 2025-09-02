@@ -24,7 +24,7 @@ interface CountrySelectorProps {
   disabled?: boolean;
 }
 
-export const CountrySelector = ({ value, onValueChange, disabled }: CountrySelectorProps) => {
+const CountrySelector = ({ value, onValueChange, disabled }: CountrySelectorProps) => {
   const [open, setOpen] = useState(false);
 
   const selectedCountry = countries.find(c => c.code === value);
@@ -39,7 +39,7 @@ export const CountrySelector = ({ value, onValueChange, disabled }: CountrySelec
       <DialogTrigger asChild>
         <Button
           variant="outline"
-          className="w-full justify-start text-left font-normal h-12"
+          className="w-full justify-start text-left font-normal h-12 bg-background z-50"
           disabled={disabled}
         >
           {selectedCountry ? (
@@ -53,7 +53,7 @@ export const CountrySelector = ({ value, onValueChange, disabled }: CountrySelec
         </Button>
       </DialogTrigger>
       
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md bg-background z-50">
         <DialogHeader>
           <DialogTitle className="text-center">Select your country</DialogTitle>
         </DialogHeader>
@@ -63,7 +63,7 @@ export const CountrySelector = ({ value, onValueChange, disabled }: CountrySelec
             <button
               key={country.code}
               onClick={() => handleSelect(country.code)}
-              className="w-full flex items-center gap-4 p-4 rounded-lg hover:bg-muted/50 transition-colors"
+              className="w-full flex items-center gap-4 p-4 rounded-lg hover:bg-muted/50 transition-colors bg-background"
             >
               <div className="flex items-center gap-3 flex-1">
                 <div className="w-6 h-6 rounded-full border-2 border-muted-foreground flex items-center justify-center">
@@ -93,3 +93,6 @@ export const CountrySelector = ({ value, onValueChange, disabled }: CountrySelec
     </Dialog>
   );
 };
+
+export { CountrySelector };
+export default CountrySelector;
