@@ -67,10 +67,10 @@ const Landing = () => {
               <Button
                 size="lg"
                 variant="outline"
-                onClick={() => navigate('/plans')}
-                className="text-lg px-8 py-3 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+                onClick={() => navigate('/auth/login')}
+                className="text-lg px-8 py-3 border-white text-white hover:bg-white hover:text-primary bg-white/10 backdrop-blur-sm"
               >
-                See Plans
+                Sign In
               </Button>
             </div>
           </div>
