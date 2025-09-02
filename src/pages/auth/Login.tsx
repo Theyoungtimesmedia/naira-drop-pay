@@ -13,7 +13,7 @@ const Login = () => {
   const { signIn } = useAuth();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    email: '',
+    phone: '',
     password: ''
   });
 
@@ -22,7 +22,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const { error } = await signIn(formData.email, formData.password);
+      const { error } = await signIn(formData.phone, formData.password);
 
       if (error) {
         if (error.message.includes('Invalid login credentials')) {
@@ -57,12 +57,12 @@ const Login = () => {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="phone">Phone Number</Label>
                 <Input
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                  id="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
                   required
                 />
               </div>

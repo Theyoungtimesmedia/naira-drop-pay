@@ -261,14 +261,42 @@ const Deposit = () => {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="bg-info/10 border border-info/20 rounded-lg p-4 mb-4">
-                    <h4 className="font-semibold text-primary-foreground mb-2">Deposit Instructions</h4>
-                    <ul className="text-sm text-primary-foreground/80 space-y-1">
-                      <li>• Choose your preferred payment method</li>
-                      <li>• For card/bank payments, select your country for local currency rates</li>
-                      <li>• For USDT deposits, send exactly the required amount to avoid delays</li>
-                      <li>• Upload a clear screenshot for faster verification</li>
-                      <li>• Deposits are typically processed within 1-24 hours</li>
+                    <h4 className="font-semibold mb-3 flex items-center">
+                      <span className="text-info mr-2">💰</span>
+                      Deposit Instructions
+                    </h4>
+                    <ul className="space-y-2 text-sm">
+                      <li>• <strong>Earn instant 5% cash back</strong> when you deposit with USDT</li>
+                      <li>• Only supported network is <strong>USDT BEP20</strong></li>
+                      <li>• Send USDT BEP20 from any of your wallets to our address</li>
+                      <li>• Ensure you use the matching network which is <strong>BEP20</strong></li>
+                      <li>• Minimum deposit is <strong>$5</strong></li>
+                      <li>• Any deposit(s) made below minimum will not be credited</li>
                     </ul>
+                  </div>
+
+                  <div className="bg-warning/10 border border-warning/20 rounded-lg p-4 mb-4">
+                    <h4 className="font-semibold mb-3 flex items-center">
+                      <span className="text-warning mr-2">⚡</span>
+                      Withdrawal Instructions
+                    </h4>
+                    <ul className="space-y-2 text-sm">
+                      <li>• <strong>Withdrawal time:</strong> 10am - 6pm daily</li>
+                      <li>• <strong>Minimum withdrawal:</strong> $2</li>
+                      <li>• <strong>Withdrawal commissions:</strong></li>
+                      <li className="ml-4">- In Naira: 15%</li>
+                      <li className="ml-4">- In USD: 8%</li>
+                      <li>• <strong>Processing time:</strong> 24hrs maximum</li>
+                      <li>• Please provide correct banking/USDT wallet information</li>
+                    </ul>
+                    <div className="mt-3 p-3 bg-primary/10 rounded border border-primary/20">
+                      <p className="text-sm font-medium">
+                        <span className="text-primary">USDT Rate:</span> ₦1,600 per USD
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        We encourage USD deposits to reduce fees (5% bonus vs 15% Naira fee)
+                      </p>
+                    </div>
                   </div>
 
                   <div>
