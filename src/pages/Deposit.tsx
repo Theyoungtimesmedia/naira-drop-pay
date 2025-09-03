@@ -246,20 +246,33 @@ const Deposit = () => {
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="base" className="flex items-center gap-2">
                 <CreditCard className="h-4 w-4" />
-                Card/Bank
+                💳 Naira Deposit
               </TabsTrigger>
               <TabsTrigger value="crypto" className="flex items-center gap-2">
                 <Smartphone className="h-4 w-4" />
-                USDT (BEP20)
+                📱 USDT (BEP20)
               </TabsTrigger>
             </TabsList>
 
             <TabsContent value="base" className="mt-6">
               <Card className="shadow-card">
                 <CardHeader>
-                  <CardTitle>Pay with Card or Bank</CardTitle>
+                  <CardTitle>Pay with Naira Deposit</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
+                  {/* Active Investments Section */}
+                  <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg border">
+                    <h3 className="font-semibold text-foreground mb-3 flex items-center">
+                      <span className="text-primary mr-2">📈</span>
+                      Active Investments
+                    </h3>
+                    <div className="text-sm text-muted-foreground">
+                      <p>• $120 earns $13.8 daily</p>
+                      <p>• $250 earns $28.8 daily</p>
+                      <p className="text-muted-foreground/60">• $500 earns $60.0 daily (Coming Soon)</p>
+                      <p>• $1,200 earns $144 daily</p>
+                    </div>
+                  </div>
                   <div className="bg-info/10 border border-info/20 rounded-lg p-4 mb-4">
                     <h4 className="font-semibold mb-3 flex items-center">
                       <span className="text-info mr-2">💰</span>
@@ -273,30 +286,6 @@ const Deposit = () => {
                       <li>• Minimum deposit is <strong>$5</strong></li>
                       <li>• Any deposit(s) made below minimum will not be credited</li>
                     </ul>
-                  </div>
-
-                  <div className="bg-warning/10 border border-warning/20 rounded-lg p-4 mb-4">
-                    <h4 className="font-semibold mb-3 flex items-center">
-                      <span className="text-warning mr-2">⚡</span>
-                      Withdrawal Instructions
-                    </h4>
-                    <ul className="space-y-2 text-sm">
-                      <li>• <strong>Withdrawal time:</strong> 10am - 6pm daily</li>
-                      <li>• <strong>Minimum withdrawal:</strong> $2</li>
-                      <li>• <strong>Withdrawal commissions:</strong></li>
-                      <li className="ml-4">- In Naira: 15%</li>
-                      <li className="ml-4">- In USD: 8%</li>
-                      <li>• <strong>Processing time:</strong> 24hrs maximum</li>
-                      <li>• Please provide correct banking/USDT wallet information</li>
-                    </ul>
-                    <div className="mt-3 p-3 bg-primary/10 rounded border border-primary/20">
-                      <p className="text-sm font-medium">
-                        <span className="text-primary">USDT Rate:</span> ₦1,600 per USD
-                      </p>
-                      <p className="text-xs text-muted-foreground mt-1">
-                        We encourage USD deposits to reduce fees (5% bonus vs 15% Naira fee)
-                      </p>
-                    </div>
                   </div>
 
                   <div>
@@ -337,12 +326,12 @@ const Deposit = () => {
                   )}
 
                   <Button
-                    className="w-full"
-                    variant="primary_gradient"
-                    onClick={handleBasePayment}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                    variant="default"
+                    onClick={() => navigate('/withdrawal')}
                     disabled={!selectedCountry || selectedCountry === 'OTHER' || submitting}
                   >
-                    {submitting ? 'Processing...' : selectedCountry === 'OTHER' ? 'Use USDT Instead' : 'Pay Now'}
+                    {submitting ? 'Processing...' : selectedCountry === 'OTHER' ? 'Use USDT Instead' : 'Use USDT Instead'}
                   </Button>
                 </CardContent>
               </Card>

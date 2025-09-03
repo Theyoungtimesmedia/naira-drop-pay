@@ -82,12 +82,21 @@ const Plans = () => {
           <div className="grid gap-4">
             {plans.map((plan) => {
               const returnPercentage = getReturnPercentage(plan.deposit_usd, plan.total_return_usd);
+              const cardColors = [
+                'bg-gradient-to-br from-blue-500 to-blue-600',
+                'bg-gradient-to-br from-green-500 to-green-600', 
+                'bg-gradient-to-br from-purple-500 to-purple-600',
+                'bg-gradient-to-br from-orange-500 to-orange-600',
+                'bg-gradient-to-br from-pink-500 to-pink-600',
+                'bg-gradient-to-br from-indigo-500 to-indigo-600'
+              ];
+              const cardColor = cardColors[plans.indexOf(plan) % cardColors.length];
               
               return (
-                <Card key={plan.id} className="relative overflow-hidden bg-card border shadow-sm hover:shadow-md transition-all duration-200">
+                <Card key={plan.id} className={`relative overflow-hidden ${cardColor} text-white border shadow-sm hover:shadow-md transition-all duration-200`}>
                   {plan.is_locked && (
                     <div className="absolute top-3 right-3">
-                      <Badge variant="secondary" className="text-xs px-2 py-1">
+                      <Badge variant="secondary" className="text-xs px-2 py-1 bg-white/20 text-white">
                         Coming Soon
                       </Badge>
                     </div>
