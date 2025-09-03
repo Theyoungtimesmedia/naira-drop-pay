@@ -205,8 +205,9 @@ const Wallet = () => {
             <Button
               variant="outline"
               onClick={() => navigate('/plans')}
-              className="w-full border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+              className="w-full bg-white/20 border-white/30 text-white hover:bg-white/30 hover:text-white"
             >
+              <Plus className="mr-2 h-4 w-4" />
               Deposit
             </Button>
             <WithdrawalModal
@@ -216,10 +217,11 @@ const Wallet = () => {
               onSuccess={loadWalletData}
             />
             <Button
-              variant="primary_gradient"
+              variant="outline"
               onClick={() => setShowWithdrawModal(true)}
-              className="w-full"
+              className="w-full bg-white/20 border-white/30 text-white hover:bg-white/30 hover:text-white"
             >
+              <ArrowUpRight className="mr-2 h-4 w-4" />
               Withdraw
             </Button>
           </div>

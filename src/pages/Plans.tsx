@@ -93,43 +93,41 @@ const Plans = () => {
                     </div>
                   )}
                   
-                  <CardHeader className="pb-4">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <CardTitle className="text-lg font-bold text-foreground">{plan.name}</CardTitle>
-                        <Badge variant="outline" className="mt-1 text-xs bg-primary/10 text-primary border-primary/20">
-                          +{returnPercentage}% Return
-                        </Badge>
-                      </div>
+                  <CardHeader className="pb-4 text-center">
+                    <div className="flex flex-col items-center">
+                      <CardTitle className="text-lg font-bold text-white">{plan.name}</CardTitle>
+                      <Badge variant="outline" className="mt-1 text-xs bg-white/20 text-white border-white/30">
+                        +{returnPercentage}% Return
+                      </Badge>
                     </div>
                   </CardHeader>
                   
                   <CardContent className="pt-0 space-y-4">
                     <div className="grid grid-cols-2 gap-6">
                       <div className="text-center">
-                        <p className="text-xs text-muted-foreground mb-1">Deposit Amount</p>
-                        <p className="text-xl font-bold text-foreground">
+                        <p className="text-xs text-white/70 mb-1">Deposit Amount</p>
+                        <p className="text-xl font-bold text-white">
                           {formatUSD(plan.deposit_usd)}
                         </p>
                       </div>
                       <div className="text-center">
-                        <p className="text-xs text-muted-foreground mb-1">Total Return</p>
-                        <p className="text-xl font-bold text-secondary">
+                        <p className="text-xs text-white/70 mb-1">Total Return</p>
+                        <p className="text-xl font-bold text-green-300">
                           {formatUSD(plan.total_return_usd)}
                         </p>
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-6 pt-2 border-t border-border/50">
+                    <div className="grid grid-cols-2 gap-6 pt-2 border-t border-white/20">
                       <div className="text-center">
-                        <p className="text-xs text-muted-foreground mb-1">Per Drop</p>
-                        <p className="text-sm font-semibold text-foreground">
+                        <p className="text-xs text-white/70 mb-1">Per Drop</p>
+                        <p className="text-sm font-semibold text-white">
                           {formatDecimal(plan.payout_per_drop_usd)}
                         </p>
                       </div>
                       <div className="text-center">
-                        <p className="text-xs text-muted-foreground mb-1">Total Drops</p>
-                        <p className="text-sm font-semibold text-foreground">
+                        <p className="text-xs text-white/70 mb-1">Total Drops</p>
+                        <p className="text-sm font-semibold text-white">
                           {plan.drops_count} times
                         </p>
                       </div>
@@ -137,8 +135,8 @@ const Plans = () => {
 
                     <div className="pt-3">
                       <Button
-                        className="w-full h-11"
-                        variant={plan.is_locked ? "outline" : "default"}
+                        className="w-full h-11 bg-white/20 text-white border-white/30 hover:bg-white/30"
+                        variant="outline"
                         size="default"
                         disabled={plan.is_locked}
                         onClick={() => navigate(`/deposit?plan=${plan.id}`)}
@@ -162,15 +160,6 @@ const Plans = () => {
             })}
           </div>
 
-          <div className="mt-8 p-6 bg-muted/50 rounded-lg">
-            <h3 className="font-semibold mb-2">How it works:</h3>
-            <ul className="space-y-1 text-sm text-muted-foreground">
-              <li>• Choose an investment plan that suits your budget</li>
-              <li>• Receive daily returns every 22 hours automatically</li>
-              <li>• Withdraw your earnings anytime (minimum $2)</li>
-              <li>• 8% fee for USD withdrawals, 15% for Naira</li>
-            </ul>
-          </div>
         </div>
       </div>
     </Layout>

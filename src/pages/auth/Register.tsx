@@ -22,11 +22,21 @@ const Register = () => {
   });
 
   const countries = [
-    { code: 'NG', name: 'Nigeria' },
-    { code: 'KE', name: 'Kenya' },
-    { code: 'UG', name: 'Uganda' },
-    { code: 'ZA', name: 'South Africa' },
-    { code: 'GH', name: 'Ghana' }
+    { code: 'IN', name: 'India', flag: '🇮🇳' },
+    { code: 'AE', name: 'Dubai (UAE)', flag: '🇦🇪' },
+    { code: 'PH', name: 'Philippines', flag: '🇵🇭' },
+    { code: 'GB', name: 'United Kingdom', flag: '🇬🇧' },
+    { code: 'US', name: 'United States', flag: '🇺🇸' },
+    { code: 'JP', name: 'Japan', flag: '🇯🇵' },
+    { code: 'RU', name: 'Russia', flag: '🇷🇺' },
+    { code: 'CN', name: 'China', flag: '🇨🇳' },
+    { code: 'AU', name: 'Australia', flag: '🇦🇺' },
+    { code: 'NG', name: 'Nigeria', flag: '🇳🇬' },
+    { code: 'KE', name: 'Kenya', flag: '🇰🇪' },
+    { code: 'UG', name: 'Uganda', flag: '🇺🇬' },
+    { code: 'ZA', name: 'South Africa', flag: '🇿🇦' },
+    { code: 'GH', name: 'Ghana', flag: '🇬🇭' },
+    { code: 'OTHER', name: 'Other Countries', flag: '🌍' }
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -76,6 +86,29 @@ const Register = () => {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
+                <Label htmlFor="country">Select Country</Label>
+                <Select
+                  value={formData.country}
+                  onValueChange={(value) => setFormData(prev => ({ ...prev, country: value }))}
+                  required
+                >
+                  <SelectTrigger className="bg-background z-50">
+                    <SelectValue placeholder="Select your country" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background z-50">
+                    {countries.map(country => (
+                      <SelectItem key={country.code} value={country.code} className="bg-background">
+                        <div className="flex items-center gap-3">
+                          <span className="text-lg">{country.flag}</span>
+                          <span>{country.name}</span>
+                        </div>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
                 <Label htmlFor="phone">Phone Number</Label>
                 <Input
                   id="phone"
@@ -109,26 +142,6 @@ const Register = () => {
                   required
                   minLength={6}
                 />
-              </div>
-
-              <div>
-                <Label htmlFor="country">Country Code</Label>
-                <Select
-                  value={formData.country}
-                  onValueChange={(value) => setFormData(prev => ({ ...prev, country: value }))}
-                  required
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select your country" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {countries.map(country => (
-                      <SelectItem key={country.code} value={country.code}>
-                        {country.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
               </div>
 
               <div>

@@ -10,12 +10,21 @@ interface Country {
 }
 
 const countries: Country[] = [
+  { code: 'IN', name: 'India', flag: '🇮🇳' },
+  { code: 'AE', name: 'Dubai (UAE)', flag: '🇦🇪' },
+  { code: 'PH', name: 'Philippines', flag: '🇵🇭' },
+  { code: 'GB', name: 'United Kingdom', flag: '🇬🇧' },
+  { code: 'US', name: 'United States', flag: '🇺🇸' },
+  { code: 'JP', name: 'Japan', flag: '🇯🇵' },
+  { code: 'RU', name: 'Russia', flag: '🇷🇺' },
+  { code: 'CN', name: 'China', flag: '🇨🇳' },
+  { code: 'AU', name: 'Australia', flag: '🇦🇺' },
   { code: 'NG', name: 'Nigeria', flag: '🇳🇬' },
   { code: 'KE', name: 'Kenya', flag: '🇰🇪' },
   { code: 'UG', name: 'Uganda', flag: '🇺🇬' },
   { code: 'ZA', name: 'South Africa', flag: '🇿🇦' },
   { code: 'GH', name: 'Ghana', flag: '🇬🇭' },
-  { code: 'OTHER', name: 'Others', flag: '🌍' }
+  { code: 'OTHER', name: 'Other Countries', flag: '🌍' }
 ];
 
 interface CountrySelectorProps {
