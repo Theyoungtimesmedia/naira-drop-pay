@@ -10,21 +10,26 @@ interface Country {
 }
 
 const countries: Country[] = [
-  { code: 'IN', name: 'India', flag: '🇮🇳' },
-  { code: 'AE', name: 'Dubai (UAE)', flag: '🇦🇪' },
-  { code: 'PH', name: 'Philippines', flag: '🇵🇭' },
-  { code: 'GB', name: 'United Kingdom', flag: '🇬🇧' },
-  { code: 'US', name: 'United States', flag: '🇺🇸' },
-  { code: 'JP', name: 'Japan', flag: '🇯🇵' },
-  { code: 'RU', name: 'Russia', flag: '🇷🇺' },
-  { code: 'CN', name: 'China', flag: '🇨🇳' },
-  { code: 'AU', name: 'Australia', flag: '🇦🇺' },
-  { code: 'NG', name: 'Nigeria', flag: '🇳🇬' },
-  { code: 'KE', name: 'Kenya', flag: '🇰🇪' },
-  { code: 'UG', name: 'Uganda', flag: '🇺🇬' },
-  { code: 'ZA', name: 'South Africa', flag: '🇿🇦' },
-  { code: 'GH', name: 'Ghana', flag: '🇬🇭' },
-  { code: 'OTHER', name: 'Other Countries', flag: '🌍' }
+  { code: 'IN', name: 'India (+91)', flag: '🇮🇳' },
+  { code: 'AE', name: 'Dubai (+971)', flag: '🇦🇪' },
+  { code: 'PH', name: 'Philippines (+63)', flag: '🇵🇭' },
+  { code: 'GB', name: 'UK (+44)', flag: '🇬🇧' },
+  { code: 'US', name: 'USA (+1)', flag: '🇺🇸' },
+  { code: 'JP', name: 'Japan (+81)', flag: '🇯🇵' },
+  { code: 'RU', name: 'Russia (+7)', flag: '🇷🇺' },
+  { code: 'CN', name: 'China (+86)', flag: '🇨🇳' },
+  { code: 'AU', name: 'Australia (+61)', flag: '🇦🇺' },
+  { code: 'NG', name: 'Nigeria (+234)', flag: '🇳🇬' },
+  { code: 'CA', name: 'Canada (+1)', flag: '🇨🇦' },
+  { code: 'DE', name: 'Germany (+49)', flag: '🇩🇪' },
+  { code: 'FR', name: 'France (+33)', flag: '🇫🇷' },
+  { code: 'IT', name: 'Italy (+39)', flag: '🇮🇹' },
+  { code: 'ES', name: 'Spain (+34)', flag: '🇪🇸' },
+  { code: 'BR', name: 'Brazil (+55)', flag: '🇧🇷' },
+  { code: 'MX', name: 'Mexico (+52)', flag: '🇲🇽' },
+  { code: 'AR', name: 'Argentina (+54)', flag: '🇦🇷' },
+  { code: 'KR', name: 'South Korea (+82)', flag: '🇰🇷' },
+  { code: 'OTHER', name: 'Other countries', flag: '🌍' }
 ];
 
 interface CountrySelectorProps {

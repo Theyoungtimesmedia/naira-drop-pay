@@ -249,6 +249,42 @@ const Transactions = () => {
           </div>
         </div>
 
+        {/* WhatsApp and Telegram Links - Only for active investors */}
+        {transactions.some(tx => tx.type === 'income') && (
+          <Card className="bg-gradient-to-r from-green-500 to-blue-500 text-white">
+            <CardContent className="p-6">
+              <h3 className="text-lg font-semibold mb-4">Join Our Community</h3>
+              <p className="text-sm mb-4 text-white/90">
+                Connect with other investors in our exclusive groups!
+              </p>
+              <div className="flex gap-4">
+                <a
+                  href="https://whatsapp.com/channel/0029VaoLotu4PbiQ5lv7ot1Q"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1"
+                >
+                  <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+                    <span className="mr-2">📱</span>
+                    Join WhatsApp
+                  </Button>
+                </a>
+                <a
+                  href="https://t.me/+ZmRBijE1mCk1YzBk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1"
+                >
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                    <span className="mr-2">✈️</span>
+                    Join Telegram
+                  </Button>
+                </a>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
         {/* Transactions List */}
         {transactions.length === 0 ? (
           <Card>

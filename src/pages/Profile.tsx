@@ -47,7 +47,26 @@ const Profile = () => {
         .eq('user_id', user?.id)
         .single();
 
-      if (profileError) throw profileError;
+      if (profileError) {
+        // If no profile exists, create one with user's phone from auth metadata
+        if (profileError.code === 'PGRST116') {
+          const { data: newProfile, error: createError } = await supabase
+            .from('profiles')
+            .insert({
+              user_id: user?.id,
+              phone: user?.phone || user?.user_metadata?.phone || '',
+              country: user?.user_metadata?.country || ''
+            })
+            .select('phone, country, referral_code')
+            .single();
+          
+          if (!createError) {
+            setProfile(newProfile);
+            return;
+          }
+        }
+        throw profileError;
+      }
       setProfile(profileData);
 
       // Load wallet data

@@ -7,6 +7,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
 import Layout from '@/components/Layout';
+import ActiveDeposits from '@/components/ActiveDeposits';
 
 interface WalletData {
   available_cents: number;
@@ -196,6 +197,16 @@ const Dashboard = () => {
                   Withdraw
                 </Button>
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Active Deposits Section */}
+          <Card className="bg-card border-0 shadow-card mt-6">
+            <CardHeader>
+              <CardTitle className="text-card-foreground">Active Deposits</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ActiveDeposits userId={user?.id || ''} />
             </CardContent>
           </Card>
 
