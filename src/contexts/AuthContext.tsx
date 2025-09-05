@@ -48,13 +48,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signUp = async (phone: string, password: string, userData: any = {}) => {
     const redirectUrl = `${window.location.origin}/`;
+    // Convert phone to email format for Supabase
+    const email = `${phone.replace(/[^0-9]/g, '')}@lunorise.app`;
     
     const { error } = await supabase.auth.signUp({
-      phone,
+      email,
       password,
       options: {
         emailRedirectTo: redirectUrl,
-        data: userData
+        data: {
+          ...userData,
+          phone: phone // Store original phone in metadata
+        }
       }
     });
     return { error };
@@ -62,8 +67,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signIn = async (phone: string, password: string) => {
     try {
+      // Convert phone to email format for Supabase
+      const email = `${phone.replace(/[^0-9]/g, '')}@lunorise.app`;
+      
       const { data, error } = await supabase.auth.signInWithPassword({ 
-        phone, 
+        email, 
         password 
       });
       

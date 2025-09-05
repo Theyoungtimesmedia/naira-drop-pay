@@ -22,6 +22,11 @@ const Register = () => {
   });
 
   const countries = [
+    { code: 'NG', name: 'Nigeria (+234)', flag: '🇳🇬' },
+    { code: 'KE', name: 'Kenya (+254)', flag: '🇰🇪' },
+    { code: 'UG', name: 'Uganda (+256)', flag: '🇺🇬' },
+    { code: 'ZA', name: 'South Africa (+27)', flag: '🇿🇦' },
+    { code: 'GH', name: 'Ghana (+233)', flag: '🇬🇭' },
     { code: 'IN', name: 'India (+91)', flag: '🇮🇳' },
     { code: 'AE', name: 'Dubai (+971)', flag: '🇦🇪' },
     { code: 'PH', name: 'Philippines (+63)', flag: '🇵🇭' },
@@ -31,7 +36,6 @@ const Register = () => {
     { code: 'RU', name: 'Russia (+7)', flag: '🇷🇺' },
     { code: 'CN', name: 'China (+86)', flag: '🇨🇳' },
     { code: 'AU', name: 'Australia (+61)', flag: '🇦🇺' },
-    { code: 'NG', name: 'Nigeria (+234)', flag: '🇳🇬' },
     { code: 'CA', name: 'Canada (+1)', flag: '🇨🇦' },
     { code: 'DE', name: 'Germany (+49)', flag: '🇩🇪' },
     { code: 'FR', name: 'France (+33)', flag: '🇫🇷' },
@@ -55,10 +59,7 @@ const Register = () => {
     setLoading(true);
 
     try {
-      // Use phone as email for Supabase (since Supabase requires email)
-      const email = `${formData.phone}@lunorise.app`;
-      
-      const { error } = await signUp(email, formData.password, {
+      const { error } = await signUp(formData.phone, formData.password, {
         phone: formData.phone,
         country: formData.country,
         referral_code: formData.referralCode

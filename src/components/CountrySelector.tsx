@@ -10,6 +10,11 @@ interface Country {
 }
 
 const countries: Country[] = [
+  { code: 'NG', name: 'Nigeria (+234)', flag: '🇳🇬' },
+  { code: 'KE', name: 'Kenya (+254)', flag: '🇰🇪' },
+  { code: 'UG', name: 'Uganda (+256)', flag: '🇺🇬' },
+  { code: 'ZA', name: 'South Africa (+27)', flag: '🇿🇦' },
+  { code: 'GH', name: 'Ghana (+233)', flag: '🇬🇭' },
   { code: 'IN', name: 'India (+91)', flag: '🇮🇳' },
   { code: 'AE', name: 'Dubai (+971)', flag: '🇦🇪' },
   { code: 'PH', name: 'Philippines (+63)', flag: '🇵🇭' },
@@ -19,7 +24,6 @@ const countries: Country[] = [
   { code: 'RU', name: 'Russia (+7)', flag: '🇷🇺' },
   { code: 'CN', name: 'China (+86)', flag: '🇨🇳' },
   { code: 'AU', name: 'Australia (+61)', flag: '🇦🇺' },
-  { code: 'NG', name: 'Nigeria (+234)', flag: '🇳🇬' },
   { code: 'CA', name: 'Canada (+1)', flag: '🇨🇦' },
   { code: 'DE', name: 'Germany (+49)', flag: '🇩🇪' },
   { code: 'FR', name: 'France (+33)', flag: '🇫🇷' },
