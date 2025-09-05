@@ -48,13 +48,13 @@ const Profile = () => {
         .single();
 
       if (profileError) {
-        // If no profile exists, create one with user's phone from auth metadata
+        // If no profile exists, this shouldn't happen with the trigger, but create one as fallback
         if (profileError.code === 'PGRST116') {
           const { data: newProfile, error: createError } = await supabase
             .from('profiles')
             .insert({
               user_id: user?.id,
-              phone: user?.phone || user?.user_metadata?.phone || '',
+              phone: user?.user_metadata?.phone || user?.phone || '',
               country: user?.user_metadata?.country || ''
             })
             .select('phone, country, referral_code')

@@ -57,8 +57,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       options: {
         emailRedirectTo: redirectUrl,
         data: {
-          ...userData,
-          phone: phone // Store original phone in metadata
+          phone: phone, // Store original phone in metadata
+          country: userData.country, // Store country in metadata
+          full_name: userData.full_name // Store full name in metadata
         }
       }
     });
