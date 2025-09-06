@@ -8,69 +8,57 @@ import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
 import Layout from '@/components/Layout';
 import ActiveDeposits from '@/components/ActiveDeposits';
-
 interface WalletData {
   available_cents: number;
   pending_cents: number;
   total_earned_cents: number;
 }
-
 interface ProfileData {
   phone: string;
   country: string;
   referral_code: string;
 }
-
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const {
+    user
+  } = useAuth();
   const [wallet, setWallet] = useState<WalletData | null>(null);
   const [profile, setProfile] = useState<ProfileData | null>(null);
   const [nextDrop, setNextDrop] = useState<Date | null>(null);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     if (user) {
       loadDashboardData();
     }
   }, [user]);
-
   const loadDashboardData = async () => {
     try {
       // Load wallet data
-      const { data: walletData, error: walletError } = await supabase
-        .from('wallets')
-        .select('*')
-        .eq('user_id', user?.id)
-        .single();
-
+      const {
+        data: walletData,
+        error: walletError
+      } = await supabase.from('wallets').select('*').eq('user_id', user?.id).single();
       if (walletError) throw walletError;
       setWallet(walletData);
 
       // Load profile data
-      const { data: profileData, error: profileError } = await supabase
-        .from('profiles')
-        .select('phone, country, referral_code')
-        .eq('user_id', user?.id)
-        .single();
-
+      const {
+        data: profileData,
+        error: profileError
+      } = await supabase.from('profiles').select('phone, country, referral_code').eq('user_id', user?.id).single();
       if (profileError) throw profileError;
       setProfile(profileData);
 
       // Load next income drop
-      const { data: nextDropData } = await supabase
-        .from('income_events')
-        .select('due_at')
-        .eq('user_id', user?.id)
-        .eq('processed_bool', false)
-        .order('due_at', { ascending: true })
-        .limit(1)
-        .single();
-
+      const {
+        data: nextDropData
+      } = await supabase.from('income_events').select('due_at').eq('user_id', user?.id).eq('processed_bool', false).order('due_at', {
+        ascending: true
+      }).limit(1).single();
       if (nextDropData) {
         setNextDrop(new Date(nextDropData.due_at));
       }
-
     } catch (error) {
       console.error('Error loading dashboard:', error);
       toast.error('Failed to load dashboard data');
@@ -78,38 +66,30 @@ const Dashboard = () => {
       setLoading(false);
     }
   };
-
   const formatUSD = (cents: number) => `$${(cents / 100).toFixed(2)}`;
-
   const getTimeUntilDrop = () => {
     if (!nextDrop) return null;
-    
     const now = new Date();
     const diff = nextDrop.getTime() - now.getTime();
-    
     if (diff <= 0) return null;
-    
     const hours = Math.floor(diff / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-    
-    return { hours, minutes, seconds };
+    const minutes = Math.floor(diff % (1000 * 60 * 60) / (1000 * 60));
+    const seconds = Math.floor(diff % (1000 * 60) / 1000);
+    return {
+      hours,
+      minutes,
+      seconds
+    };
   };
-
   const timeUntilDrop = getTimeUntilDrop();
-
   if (loading) {
-    return (
-      <Layout>
+    return <Layout>
         <div className="min-h-screen bg-gradient-primary flex items-center justify-center">
           <div className="text-primary-foreground">Loading...</div>
         </div>
-      </Layout>
-    );
+      </Layout>;
   }
-
-  return (
-    <Layout>
+  return <Layout>
       <div className="min-h-screen bg-gradient-primary text-primary-foreground">
         {/* Header */}
         <div className="p-6 pt-12">
@@ -130,8 +110,7 @@ const Dashboard = () => {
           </div>
 
           {/* Next Income Drop Countdown */}
-          {timeUntilDrop && (
-            <Card className="bg-card/10 border-primary-foreground/20 backdrop-blur-sm mb-6">
+          {timeUntilDrop && <Card className="bg-card/10 border-primary-foreground/20 backdrop-blur-sm mb-6">
               <CardContent className="p-6 text-center">
                 <h3 className="text-lg font-semibold mb-4">Next Income Drop In:</h3>
                 <div className="flex justify-center space-x-4">
@@ -149,8 +128,7 @@ const Dashboard = () => {
                   </div>
                 </div>
               </CardContent>
-            </Card>
-          )}
+            </Card>}
 
           {/* Account Balance */}
           <Card className="bg-card border-0 shadow-card">
@@ -180,19 +158,11 @@ const Dashboard = () => {
               </div>
 
               <div className="grid grid-cols-2 gap-4 mt-6">
-                <Button
-                  variant="success"
-                  className="w-full"
-                  onClick={() => navigate('/plans')}
-                >
+                <Button variant="success" className="w-full" onClick={() => navigate('/plans')}>
                   <Plus className="mr-2 h-4 w-4" />
                   Deposit
                 </Button>
-                <Button
-                  variant="warning"
-                  className="w-full"
-                  onClick={() => navigate('/wallet')}
-                >
+                <Button variant="warning" className="w-full" onClick={() => navigate('/wallet')}>
                   <TrendingUp className="mr-2 h-4 w-4" />
                   Withdraw
                 </Button>
@@ -203,7 +173,7 @@ const Dashboard = () => {
           {/* Active Deposits Section */}
           <Card className="bg-card border-0 shadow-card mt-6">
             <CardHeader>
-              <CardTitle className="text-card-foreground">Active Deposits</CardTitle>
+              <CardTitle className="text-card-foreground">Active Investment</CardTitle>
             </CardHeader>
             <CardContent>
               <ActiveDeposits userId={user?.id || ''} />
@@ -211,8 +181,7 @@ const Dashboard = () => {
           </Card>
 
           {/* Referral Section */}
-          {profile?.referral_code && (
-            <Card className="bg-card border-0 shadow-card mt-6">
+          {profile?.referral_code && <Card className="bg-card border-0 shadow-card mt-6">
               <CardHeader>
                 <CardTitle className="text-card-foreground">Invite Friends</CardTitle>
               </CardHeader>
@@ -224,23 +193,17 @@ const Dashboard = () => {
                   <code className="flex-1 bg-muted p-2 rounded text-sm">
                     {profile.referral_code}
                   </code>
-                  <Button
-                    size="sm"
-                    onClick={() => {
-                      navigator.clipboard.writeText(profile.referral_code);
-                      toast.success('Referral code copied!');
-                    }}
-                  >
+                  <Button size="sm" onClick={() => {
+                navigator.clipboard.writeText(profile.referral_code);
+                toast.success('Referral code copied!');
+              }}>
                     Copy
                   </Button>
                 </div>
               </CardContent>
-            </Card>
-          )}
+            </Card>}
         </div>
       </div>
-    </Layout>
-  );
+    </Layout>;
 };
-
 export default Dashboard;
