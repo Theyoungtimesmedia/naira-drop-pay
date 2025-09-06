@@ -278,7 +278,7 @@ const Profile = () => {
           <Button 
             variant="ghost" 
             className="w-full justify-between bg-white/10 backdrop-blur-sm border-white/20 rounded-xl p-4 h-auto text-primary-foreground"
-            onClick={() => navigate('/transactions')}
+            onClick={() => navigate('/transactions?filter=deposit')}
           >
             <div className="flex items-center space-x-3">
               <div className="w-5 h-5 bg-blue-400 rounded"></div>
@@ -290,7 +290,7 @@ const Profile = () => {
           <Button 
             variant="ghost" 
             className="w-full justify-between bg-white/10 backdrop-blur-sm border-white/20 rounded-xl p-4 h-auto text-primary-foreground"
-            onClick={() => navigate('/transactions')}
+            onClick={() => navigate('/transactions?filter=withdrawal')}
           >
             <div className="flex items-center space-x-3">
               <div className="w-5 h-5 bg-blue-400 rounded-full"></div>
@@ -302,6 +302,7 @@ const Profile = () => {
           <Button 
             variant="ghost" 
             className="w-full justify-between bg-white/10 backdrop-blur-sm border-white/20 rounded-xl p-4 h-auto text-primary-foreground"
+            onClick={() => navigate('/my-team')}
           >
             <div className="flex items-center space-x-3">
               <Users className="h-5 w-5 text-blue-400" />

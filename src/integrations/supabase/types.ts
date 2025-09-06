@@ -555,30 +555,36 @@ export type Database = {
       referrals: {
         Row: {
           bonus_cents: number
+          bonus_percentage: number | null
           created_at: string | null
           deposit_id: string | null
           id: string
           level: number
           referred_id: string
           referrer_id: string
+          status: string | null
         }
         Insert: {
           bonus_cents: number
+          bonus_percentage?: number | null
           created_at?: string | null
           deposit_id?: string | null
           id?: string
           level: number
           referred_id: string
           referrer_id: string
+          status?: string | null
         }
         Update: {
           bonus_cents?: number
+          bonus_percentage?: number | null
           created_at?: string | null
           deposit_id?: string | null
           id?: string
           level?: number
           referred_id?: string
           referrer_id?: string
+          status?: string | null
         }
         Relationships: [
           {

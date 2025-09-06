@@ -271,9 +271,24 @@ const Deposit = () => {
                       </p>
                     </div>}
 
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white" variant="default" onClick={() => navigate('/withdrawal')} disabled={!selectedCountry || selectedCountry === 'OTHER' || submitting}>
-                    {submitting ? 'Processing...' : selectedCountry === 'OTHER' ? 'Use USDT Instead' : 'Use USDT Instead'}
-                  </Button>
+                  <div className="flex gap-2">
+                    <Button 
+                      className="flex-1 bg-green-600 hover:bg-green-700 text-white" 
+                      variant="default" 
+                      disabled={!selectedCountry || selectedCountry === 'OTHER' || submitting}
+                      onClick={handleBasePayment}
+                    >
+                      {submitting ? 'Processing...' : 'Pay Now'}
+                    </Button>
+                    <Button 
+                      className="flex-1 bg-blue-600 hover:bg-blue-700 text-white" 
+                      variant="default" 
+                      disabled={!selectedCountry || selectedCountry === 'OTHER' || submitting}
+                      onClick={() => navigate('/withdrawal')}
+                    >
+                      Pay with USDT
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             </TabsContent>

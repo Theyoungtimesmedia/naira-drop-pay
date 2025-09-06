@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
 import Layout from '@/components/Layout';
+import { CountrySelector } from '@/components/CountrySelector';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,7 +15,8 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     phone: '',
-    password: ''
+    password: '',
+    country: ''
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -56,6 +58,15 @@ const Login = () => {
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <Label htmlFor="country">Country</Label>
+                <CountrySelector
+                  value={formData.country}
+                  onValueChange={(country) => setFormData(prev => ({ ...prev, country }))}
+                  disabled={loading}
+                />
+              </div>
+
               <div>
                 <Label htmlFor="phone">Phone Number</Label>
                 <Input

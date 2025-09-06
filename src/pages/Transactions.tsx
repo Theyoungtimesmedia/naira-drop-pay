@@ -35,6 +35,15 @@ const Transactions = () => {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<string>('all');
 
+  // Check URL params for initial filter
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const filterParam = urlParams.get('filter');
+    if (filterParam && ['deposit', 'withdrawal', 'income', 'referral', 'fee'].includes(filterParam)) {
+      setFilter(filterParam);
+    }
+  }, []);
+
   useEffect(() => {
     if (user) {
       loadTransactions();
@@ -259,7 +268,7 @@ const Transactions = () => {
               </p>
               <div className="flex gap-4">
                 <a
-                  href="https://whatsapp.com/channel/0029VaoLotu4PbiQ5lv7ot1Q"
+                  href="https://chat.whatsapp.com/CfVnW6ViF6i37gCw808zli?mode=ems_copy_c"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1"
